@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Absence.cs" />
+    <Compile Include="Model\Destinataire.cs" />
+    <Compile Include="Model\EmploiDuTemps.cs" />
+    <Compile Include="Model\Matiere.cs" />
+    <Compile Include="Model\Promotion.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,12 +68,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Eleve.cs" />
+    <Compile Include="Model\Formateur.cs" />
+    <Compile Include="Model\Formation.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Salle.cs" />
+    <Compile Include="Model\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

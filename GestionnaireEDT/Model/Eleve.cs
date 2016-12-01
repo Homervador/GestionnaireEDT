@@ -11,8 +11,9 @@ namespace GestionnaireEDT.Model
         private string nom;
         private string prénom;
         private string mail;
-        private List<Absence> absence;
+        private List<Absence> absences;
         private Promotion promotion;
+        
 
 
         public string Nom
@@ -35,12 +36,28 @@ namespace GestionnaireEDT.Model
 
         public int getNbAbsences (DateTime dateDebut, DateTime dateFin)
         {
-            
+            int compeurtAbs;
+            compeurtAbs = 0;
+
+            if (absences != null)
+
+            {
+                foreach (Absence absence in absences)
+                {
+                    if (absence.Session.DateDebut > dateDebut && absence.Session.DateFin < dateFin)
+                    {
+                        compeurtAbs++;
+                    }
+                }
+            }
+
+            return compeurtAbs;
+
         }
-        public List<Absence> Absence
+        public List<Absence> Absences
         {
-            get { return absence; }
-            set { absence = value; }
+            get { return absences; }
+            set { absences = value; }
         }
         
         public Promotion Promotion

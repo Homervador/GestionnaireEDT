@@ -13,8 +13,14 @@ namespace GestionnaireEDT.Model
         private string mail;
         private string telephone;
         private List<Matiere> matiere;
+        private List<Session> sessions;
 
-
+        public List<Session> Sessions
+        {
+            get { return sessions; }
+            set { sessions = value; }
+        }
+        
         public string Nom
         {
             get { return nom; }
@@ -44,8 +50,16 @@ namespace GestionnaireEDT.Model
 
         }
 
-        public bool estDisponible (DateTime dateDebut, DateTime dateFin)
+        public bool estDisponible (DateTime dateDebutPlage, DateTime dateFinPlage)
         {
+            foreach (Session session in Sessions)
+            {
+                if (dateDebutPlage < session.DateFin && dateFinPlage > session.DateDebut)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 

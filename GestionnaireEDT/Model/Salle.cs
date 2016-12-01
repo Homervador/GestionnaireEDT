@@ -10,6 +10,14 @@ namespace GestionnaireEDT.Model
     {
         private string nom;
         private int capacite;
+        private List<Session> sessions;
+
+        public List<Session> Sessions
+        {
+            get { return sessions; }
+            set { sessions = value; }
+        }
+
 
         public string Nom
         {
@@ -23,8 +31,16 @@ namespace GestionnaireEDT.Model
             set { capacite = value; }
         }
 
-        public bool estDisponible(DateTime dateDebut, DateTime datefin)
+        public bool estDisponible(DateTime dateDebutPlage, DateTime dateFinPlage)
         {
+            foreach (Session session in Sessions)
+            {
+                if (dateDebutPlage < session.DateFin && dateFinPlage > session.DateDebut)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 

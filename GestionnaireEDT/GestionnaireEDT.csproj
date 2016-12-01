@@ -56,7 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Absence.cs" />
+    <Compile Include="Model\DateException.cs" />
     <Compile Include="Model\Destinataire.cs" />
+    <Compile Include="Model\EffectifExeption.cs" />
     <Compile Include="Model\EmploiDuTemps.cs" />
     <Compile Include="Model\Matiere.cs" />
     <Compile Include="Model\Promotion.cs" />

@@ -29,6 +29,18 @@ namespace GestionnaireEDT.Model
             set { dateFin = value; }
         }
 
+        public  Session(DateTime DateDebut, DateTime DateFin)
+        {
+           
+
+            if (DateDebut >= DateFin)
+            {
+                throw new DateException("L'heure de début ne peut pas être après l'heure de fin");
+            }
+
+            
+        }
+
         public Promotion Promotion
         {
             get { return promotion; }

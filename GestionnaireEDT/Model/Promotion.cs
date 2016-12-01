@@ -11,8 +11,10 @@ namespace GestionnaireEDT.Model
         private string nom;
         private DateTime dateDebut;
         private DateTime dateFin;
-        private List<Eleve> eleve;
-        private Formation formation;
+        private List<Eleve> eleves;
+        private Formation formations;
+        private List<Session> sessions;
+
 
 
 
@@ -35,9 +37,24 @@ namespace GestionnaireEDT.Model
             set { dateFin = value; }
         }
 
-        public bool estDisponible(DateTime dateDebut, DateTime dateFin)
+        public List<Session> Sessions
         {
+            get { return sessions; }
+            set { sessions = value; }
+        }
 
+
+        public bool estDisponible(DateTime dateDebutPlage, DateTime dateFinPlage)
+        {
+            foreach (Session session in Sessions)
+            {
+                if (dateDebutPlage < session.DateFin && dateFinPlage > session.DateDebut)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public List<Session> getSession()
@@ -45,16 +62,26 @@ namespace GestionnaireEDT.Model
 
         }
 
-        public List<Eleve> Eleve
+        public List<Eleve> Eleves
         {
-            get { return eleve; }
-            set { eleve = value; }
+            get { return eleves; }
+            set
+            {
+
+                if(value.Count > 24)
+                {
+                    throw new EffectifExeption("il y plus de 24 élèves dans le promotion");
+                }
+                eleves = value;
+            }
+
+
         }
 
-        public Formation Formation
+        public Formation Formations
         {
-            get { return formation; }
-            set { formation = value; }
+            get { return formations; }
+            set { formations = value; }
         }
 
     }

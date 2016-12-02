@@ -24,19 +24,40 @@ namespace GestionnaireEDT.Model
         public string Nom
         {
             get { return nom; }
-            set { nom = value; }
+            set
+            {
+                if( value == null)
+                {
+                    throw new ChampException("Tous les champs du formateur ne sont pas rempli");
+                }
+                nom = value;
+            }
         }
 
         public string Prenom
         {
             get { return prenom; }
-            set { prenom = value; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ChampException("Tous les champs du formateur ne sont pas rempli");
+                }
+                prenom = value;
+            }
         }
         
         public string Mail
         {
             get { return mail; }
-            set { mail = value; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ChampException("Tous les champs du formateur ne sont pas rempli");
+                }
+                mail = value;
+            }
         }
         
         public string Telephone
@@ -44,6 +65,19 @@ namespace GestionnaireEDT.Model
             get { return telephone; }
             set { telephone = value; }
         }
+
+        public Formateur(string nom, string prenom, string mail, string telephone)
+        {
+            if(nom == null || prenom == null || mail == null)
+            {
+                throw new ChampException("Tous les champs du formateur ne sont pas rempli");
+            }
+            this.nom = nom;
+            this.prenom = prenom;
+            this.mail = mail;
+            this.telephone = telephone;
+        }
+
 
         public float heuresTravaillees (DateTime debutPeriode, DateTime finPeriode)
         {

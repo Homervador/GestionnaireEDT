@@ -31,6 +31,15 @@ namespace GestionnaireEDT.Model
             set { capacite = value; }
         }
 
+        public Salle(string nom, int capacite)
+        {
+            if(nom == null || capacite == 0)
+            {
+                throw new ChampException("Les champs de Salle n'ont pas tous été renseignés");
+            }
+            this.nom = nom;
+            this.capacite = capacite;
+        }
         public bool estDisponible(DateTime dateDebutPlage, DateTime dateFinPlage)
         {
             foreach (Session session in Sessions)

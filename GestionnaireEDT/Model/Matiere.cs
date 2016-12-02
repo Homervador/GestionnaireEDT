@@ -41,5 +41,13 @@ namespace GestionnaireEDT.Model
             set { formateur = value; }
         }
 
+        public Matiere(string nom)
+        {
+            if (nom == null)
+            {
+                throw new ChampException("aucun nom n'a été donner à la matière");
+            }
+            this.nom = nom;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace GestionnaireEDT.Model
     class Eleve
     {
         private string nom;
-        private string prénom;
+        private string prenom;
         private string mail;
         private List<Absence> absences;
         private Promotion promotion;
@@ -19,19 +19,51 @@ namespace GestionnaireEDT.Model
         public string Nom
         {
             get { return nom; }
-            set { nom = value; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ChampException("Tous les champs de l'élève ne sont pas rempli");
+                }
+                nom = value;
+            }
         }
 
         public string Prenom
         {
-            get { return prénom; }
-            set { prénom = value; }
+            get { return prenom; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ChampException("Tous les champs de l'élève ne sont pas rempli");
+                }
+                prenom = value;
+            }
         }
 
         public string Mail
         {
             get { return mail; }
-            set { mail = value; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ChampException("Tous les champs de l'élève ne sont pas rempli");
+                }
+                mail = value;
+            }
+        }
+
+        public Eleve (string nom, string prenom, string mail)
+        {
+            if (nom == null || prenom == null || mail == null)
+            {
+                throw new ChampException("Tous les champs de l'élève ne sont pas rempli");
+            }
+            this.nom = nom;
+            this.prenom = prenom;
+            this.mail = mail;
         }
 
         public int getNbAbsences (DateTime dateDebut, DateTime dateFin)

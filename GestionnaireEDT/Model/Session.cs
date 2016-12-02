@@ -20,25 +20,40 @@ namespace GestionnaireEDT.Model
         public DateTime DateDebut
         {
             get { return dateDebut; }
-            set { dateDebut = value; }
+            set
+            {
+                if(DateFin <= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de début après une date de fin");
+                }
+                dateDebut = value;
+            }
         }
 
         public DateTime DateFin
         {
             get { return dateFin; }
-            set { dateFin = value; }
+            set
+            {
+                if(DateDebut >= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de fin avant une datte de début");
+                }
+                dateFin = value;
+            }
         }
 
-        public  Session(DateTime DateDebut, DateTime DateFin)
+        public  Session(DateTime dateDebut, DateTime dateFin)
         {
            
 
-            if (DateDebut >= DateFin)
+            if (dateDebut >= dateFin)
             {
                 throw new DateException("L'heure de début ne peut pas être après l'heure de fin");
             }
 
-            
+            this.dateDebut = dateDebut;
+            this.dateFin = dateFin;
         }
 
         public Promotion Promotion

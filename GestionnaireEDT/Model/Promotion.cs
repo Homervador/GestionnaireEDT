@@ -25,16 +25,30 @@ namespace GestionnaireEDT.Model
             set { nom = value; }
         }
 
-        public DateTime Datedebut
+        public DateTime DateDebut
         {
             get { return dateDebut; }
-            set { dateDebut = value; }
+            set
+            {
+                if (DateFin <= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de début après une date de fin");
+                }
+                dateDebut = value;
+            }
         }
 
         public DateTime DateFin
         {
             get { return dateFin; }
-            set { dateFin = value; }
+            set
+            {
+                if (DateDebut >= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de début après une date de fin");
+                }
+                dateFin = value;
+            }
         }
 
         public List<Session> Sessions
@@ -43,6 +57,23 @@ namespace GestionnaireEDT.Model
             set { sessions = value; }
         }
 
+        public Promotion (string nom, DateTime dateDebut, DateTime dateFin)
+        {
+            if (nom == null)
+            {
+                throw new ChampException("aucun nom n'a été donner à la promotion");
+            }
+
+            if (dateDebut >= dateFin)
+            {
+                throw new DateException("L'heure de début ne peut pas être après l'heure de fin");
+            }
+
+            this.nom = nom;
+            this.dateDebut = dateDebut;
+            this.dateFin = dateFin;
+
+        }
 
         public bool estDisponible(DateTime dateDebutPlage, DateTime dateFinPlage)
         {

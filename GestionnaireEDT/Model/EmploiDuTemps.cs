@@ -18,13 +18,27 @@ namespace GestionnaireEDT.Model
         public DateTime DateDebut
         {
             get { return dateDebut; }
-            set { dateDebut = value; }
+            set
+            {
+                if (DateFin <= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de fin avant une datte de début");
+                }
+                dateDebut = value;
+            }
         }
 
         public DateTime DateFin
         {
             get { return dateFin; }
-            set { dateFin = value; }
+            set
+            {
+                if (DateDebut >= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de fin avant une datte de début");
+                }
+                dateFin = value;
+            }
         }
         
         public List<Session> Session
@@ -37,6 +51,19 @@ namespace GestionnaireEDT.Model
         {
             get { return destinataire; }
             set { destinataire = value; }
+        }
+
+        public  EmploiDuTemps(DateTime dateDebut, DateTime dateFin)
+        {
+
+
+            if (dateDebut >= dateFin)
+            {
+                throw new DateException("L'heure de début ne peut pas être après l'heure de fin");
+            }
+
+            this.dateDebut = dateDebut;
+            this.dateFin = dateFin;
         }
 
     }

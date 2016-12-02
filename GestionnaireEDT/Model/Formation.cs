@@ -26,6 +26,15 @@ namespace GestionnaireEDT.Model
             set { nbHeuresTotal = value; }
         }
 
+        public Formation(string nom, float nbHeuresTotal)
+        {
+            if(nom == null || nbHeuresTotal == 0)
+            {
+                throw new ChampException("Les champs de formation n'ont pas été rempli");
+            }
+            this.nom = nom;
+            this.nbHeuresTotal = nbHeuresTotal;
+        }
         public List<Promotion> Promotion
         {
             get { return promotion; }

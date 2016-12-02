@@ -46,7 +46,7 @@ namespace GestionnaireEDT.Model
 
         public List<Session> getSession()
         {
-
+            return this.Sessions;
         }
     }
 }

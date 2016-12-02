@@ -47,11 +47,24 @@ namespace GestionnaireEDT.Model
 
         public float heuresTravaillees (DateTime debutPeriode, DateTime finPeriode)
         {
+            float heuresTravaillees;
+            heuresTravaillees = 0;
+            TimeSpan tempsDeTravail = new TimeSpan(0, 0, 0);
 
+            foreach (Session session in Sessions)
+            {
+                if (debutPeriode < session.DateFin && finPeriode > session.DateDebut)
+                {
+                    tempsDeTravail += session.DateFin - session.DateDebut;
+                }
+            }
+            heuresTravaillees = Convert.ToSingle(tempsDeTravail.TotalHours);
+            return heuresTravaillees;
         }
 
         public bool estDisponible (DateTime dateDebutPlage, DateTime dateFinPlage)
         {
+
             foreach (Session session in Sessions)
             {
                 if (dateDebutPlage < session.DateFin && dateFinPlage > session.DateDebut)
@@ -65,7 +78,7 @@ namespace GestionnaireEDT.Model
 
         public List<Session> getSession()
         {
-            return new List<Session>();
+            return this.Sessions;
         }
 
 

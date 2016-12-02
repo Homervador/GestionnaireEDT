@@ -59,7 +59,7 @@ namespace GestionnaireEDT.Model
 
         public List<Session> getSession()
         {
-
+            return this.Sessions;
         }
 
         public List<Eleve> Eleves

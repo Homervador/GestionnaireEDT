@@ -76,7 +76,8 @@ namespace GestionnaireEDT.Model
             {
                 foreach (Absence absence in absences)
                 {
-                    if (absence.Session.DateDebut > dateDebut && absence.Session.DateFin < dateFin)
+                    if (absence.Session.estHorsDeLaPlage ( dateDebut, dateFin))
+
                     {
                         compeurtAbs++;
                     }

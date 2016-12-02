@@ -101,7 +101,7 @@ namespace GestionnaireEDT.Model
 
             foreach (Session session in Sessions)
             {
-                if (dateDebutPlage < session.DateFin && dateFinPlage > session.DateDebut)
+                if (!session.estHorsDeLaPlage(dateDebutPlage, dateFinPlage))
                 {
                     return false;
                 }

@@ -14,47 +14,7 @@ namespace GestionnaireEDT.Model
         private Matiere matiere;
         private Formateur formateur;
         private Salle salle;
-
         
-
-        public DateTime DateDebut
-        {
-            get { return dateDebut; }
-            set
-            {
-                if(DateFin <= value)
-                {
-                    throw new DateException("Impossible de mettre une datte de début après une date de fin");
-                }
-                dateDebut = value;
-            }
-        }
-
-        public DateTime DateFin
-        {
-            get { return dateFin; }
-            set
-            {
-                if(DateDebut >= value)
-                {
-                    throw new DateException("Impossible de mettre une datte de fin avant une datte de début");
-                }
-                dateFin = value;
-            }
-        }
-
-        public  Session(DateTime dateDebut, DateTime dateFin)
-        {
-           
-
-            if (dateDebut >= dateFin)
-            {
-                throw new DateException("L'heure de début ne peut pas être après l'heure de fin");
-            }
-
-            this.dateDebut = dateDebut;
-            this.dateFin = dateFin;
-        }
 
         public Promotion Promotion
         {
@@ -80,5 +40,49 @@ namespace GestionnaireEDT.Model
             set { salle = value; }
         }
 
+
+        public DateTime DateDebut
+        {
+            get { return dateDebut; }
+            set
+            {
+                if (DateFin <= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de début après une date de fin");
+                }
+                dateDebut = value;
+            }
+        }
+
+        public DateTime DateFin
+        {
+            get { return dateFin; }
+            set
+            {
+                if (DateDebut >= value)
+                {
+                    throw new DateException("Impossible de mettre une datte de fin avant une datte de début");
+                }
+                dateFin = value;
+            }
+        }
+
+        public Session(DateTime dateDebut, DateTime dateFin)
+        {
+
+
+            if (dateDebut >= dateFin)
+            {
+                throw new DateException("L'heure de début ne peut pas être après l'heure de fin");
+            }
+
+            this.dateDebut = dateDebut;
+            this.dateFin = dateFin;
+        }
+
+        public bool estHorsDeLaPlage(DateTime dateDebutPlage, DateTime dateFinPlage)
+        {
+            return (dateDebutPlage > this.DateFin || dateFinPlage < this.DateDebut);
+        }
     }
 }
